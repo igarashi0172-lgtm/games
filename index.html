@@ -2,37 +2,69 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#1a1a2e">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="description" content="オフラインで楽しめるミニゲームコレクション">
-    <title>Mini Game Collection</title>
+    <title>Mini Games</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
-    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon.svg">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div id="app">
-        <header id="header">
-            <button id="back-btn" class="header-btn hidden" aria-label="戻る">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <!-- Top Navigation -->
+        <nav class="top-nav" id="top-nav">
+            <button class="nav-icon-btn hidden" id="back-btn" aria-label="戻る">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
             </button>
-            <h1 id="header-title">🎮 Mini Games</h1>
-            <button id="menu-btn" class="header-btn" aria-label="メニュー">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
-            </button>
-        </header>
+            <h1 class="top-nav-title" id="header-title">Mini <span class="accent">Games</span></h1>
+            <div style="width:40px" id="nav-spacer"></div>
+        </nav>
 
+        <!-- Main Content -->
         <main id="main-content">
+            <!-- Home Screen -->
             <section id="home-screen">
+                <div class="hero-banner">
+                    <div class="hero-title">🎮 ゲームで遊ぼう</div>
+                    <div class="hero-sub">オフラインでも楽しめる20個のミニゲーム</div>
+                    <div class="hero-badge">🔥 いつでもどこでもプレイ可能</div>
+                </div>
+
                 <div class="search-bar">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
                     <input type="text" id="search-input" placeholder="ゲームを検索...">
                 </div>
+
                 <div class="category-tabs" id="category-tabs"></div>
+
+                <div class="section-header">
+                    <div class="section-title">ゲーム一覧</div>
+                    <div class="section-count" id="game-count">20 games</div>
+                </div>
+
                 <div class="games-grid" id="games-grid"></div>
             </section>
 
+            <!-- Stats Screen -->
+            <section id="stats-screen" class="hidden">
+                <div class="stats-screen">
+                    <div class="stats-header">
+                        <h2>📊 スコアボード</h2>
+                        <p>あなたのベストスコア</p>
+                    </div>
+                    <div class="stats-cards" id="stats-summary"></div>
+                    <div class="section-header" style="padding-left:0;padding-right:0">
+                        <div class="section-title">ベストスコア</div>
+                    </div>
+                    <div class="score-list" id="score-list"></div>
+                </div>
+            </section>
+
+            <!-- Game Screen -->
             <section id="game-screen" class="hidden">
                 <div id="game-info">
                     <h2 id="game-title"></h2>
@@ -54,6 +86,18 @@
                 </div>
             </section>
         </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav" id="bottom-nav">
+            <button class="bottom-nav-item active" data-tab="home">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span>ホーム</span>
+            </button>
+            <button class="bottom-nav-item" data-tab="stats">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                <span>スコア</span>
+            </button>
+        </nav>
     </div>
 
     <script src="js/app.js"></script>
